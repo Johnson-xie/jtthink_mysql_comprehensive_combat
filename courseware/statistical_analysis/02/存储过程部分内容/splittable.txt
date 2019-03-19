@@ -1,0 +1,33 @@
+BEGIN
+  DECLARE count_year int;
+  DECLARE Done INT DEFAULT 0;
+  DECLARE cur CURSOR FOR select DISTINCT DATE_FORMAT(hire_date,'%Y') from employees;
+  #声明当游标遍历后将标志变量置成1
+     DECLARE CONTINUE HANDLER FOR NOT FOUND SET Done=1;
+   
+     /*打开游标*/
+    OPEN cur;
+    FETCH NEXT FROM cur INTO count_year;
+set @tbname='';
+set @sqlstr='';
+    WHILE Done<>1 DO
+     set @tbname=concat('employees_',count_year);
+     set @sqlstr=concat('DROP TABLE IF EXISTS ',@tbname); 
+       PREPARE stmts  FROM @sqlstr;
+       #执行语句
+       EXECUTE stmts ;
+     set @sqlstr=concat('create table ',@tbname,' like employees ');
+       PREPARE stmts  FROM @sqlstr;
+       EXECUTE stmts ;
+	   set @sqlstr=concat('insert into  ',@tbname,' select * from employees where   DATE_FORMAT(hire_date,\'%Y\')=',count_year);
+			 PREPARE stmts  FROM @sqlstr;
+       EXECUTE stmts ;
+      
+         
+     #释放语句
+     DEALLOCATE PREPARE  stmts;
+		 set @tbname='';
+		 set @sqlstr='';
+     FETCH NEXT FROM cur INTO count_year;
+    end while;
+END
