@@ -33,3 +33,6 @@
 ### [第10讲:设计通用路由、使用自定义DSL支持where条件的pandas查询 试听](https://www.jtthink.com/course/play/1579)
 * 今天功能又进了一步。当我们输入select * from tb where xx=xx时就可以从pandas中取数据,以实现缓存数据的快速查询
 
+### [第13讲:java篇:Canal使用初步、监听数据库变化示列 试听](http://www.jtthink.com/course/play/1599)
+* 前面我们把数据用python+pandas+flask做了一个简易的查询。这几节课我们来实现下当数据发生变动时如何触发实践
+
