@@ -36,3 +36,7 @@
 ### [第13讲:java篇:Canal使用初步、监听数据库变化示列 试听](http://www.jtthink.com/course/play/1599)
 * 前面我们把数据用python+pandas+flask做了一个简易的查询。这几节课我们来实现下当数据发生变动时如何触发实践
 
+### [第14讲:使用java Canal拦截mysql插入数据、提交到python API(okHttp、jackson等) 试听](http://www.jtthink.com/course/play/1603)
+* 今天我们写一下代码拦截新增数据，得到后请求外部API的基本套路
+
+
